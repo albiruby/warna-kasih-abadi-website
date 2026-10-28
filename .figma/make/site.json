@@ -1,0 +1,10 @@
+{
+  "description": "Showcases premium paint products with interactive color catalogs and project galleries to help homeowners and builders choose quality coatings.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
