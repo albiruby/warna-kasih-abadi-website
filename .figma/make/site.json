@@ -1,7 +1,15 @@
 {
-  "description": "Showcases premium paint products with interactive color catalogs and project galleries to help homeowners and builders choose quality coatings.",
+  "title": "Warna Kasih Abadi | Cat tembok untuk proyek",
+  "description": "PT Warna Kasih Abadi, produsen cat tembok di Bogor sejak 2020. Tiga lini produk, 77 kode warna, dan TDS siap pakai untuk spesifikasi proyek.",
+  "language": "id",
   "robots": {
-    "index": false
+    "index": true
+  },
+  "icons": {
+    "icon": "/logo-wka-mark.png"
+  },
+  "openGraph": {
+    "image": "/logo-wka-mark.png"
   },
   "accessibility": {
     "addBypassLinks": false,

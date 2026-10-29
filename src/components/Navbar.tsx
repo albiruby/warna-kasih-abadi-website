@@ -1,138 +1,98 @@
-import { useState, useEffect } from "react"
-import logoImg from "../imports/WhatsApp_Image_2026-08-26_at_11.35.28.jpeg"
-
-const NAV_LINKS = [
-  { label: "Beranda", href: "#hero" },
-  { label: "Produk", href: "#products" },
-  { label: "Katalog Warna", href: "#colors" },
-  { label: "Tentang Kami", href: "#about" },
-  { label: "Proyek", href: "#projects" },
-  { label: "Kontak", href: "#contact" },
-]
+import { useEffect, useState } from "react"
+import { List, X } from "@phosphor-icons/react"
+import { Link, usePathname } from "../lib/router"
+import { NAV_LINKS } from "../lib/site"
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const isHomePage = window.location.pathname === "/"
-  const homeHref = (hash: string) => (isHomePage ? hash : `/${hash}`)
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+    setOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [open])
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white/98 backdrop-blur-sm"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 lg:h-24">
-        {/* Logo — enlarged */}
-        <a
-          href={homeHref("#hero")}
-          className="flex items-center gap-3 flex-shrink-0"
-        >
-          <img
-            src={logoImg}
-            alt="WKA Brand"
-            className="h-20 w-auto object-contain"
-          />
-          <div className="hidden sm:block leading-tight">
-            <div className="text-[10px] font-semibold text-gray-400 tracking-widest uppercase"></div>
-            <div className="text-sm font-bold text-[#0D1B54]">WKA BRAND</div>
-          </div>
-        </a>
+    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+      <div className="page flex h-16 items-center justify-between gap-6 lg:h-[72px]">
+        <Link href="/" className="flex min-h-11 items-center gap-3" aria-label="Warna Kasih Abadi, beranda">
+          <span className="flex h-10 w-10 items-center justify-center border border-line bg-white p-1 lg:h-11 lg:w-11">
+            <img src="/logo-wka-mark.png" alt="" width={40} height={40} className="h-full w-full object-contain" />
+          </span>
+          <span className="leading-none">
+            <span className="block font-display text-[15px] font-bold tracking-tight text-ink lg:text-[17px]">
+              Warna Kasih Abadi
+            </span>
+            <span className="mt-1 block text-[9px] font-medium uppercase tracking-[0.14em] text-muted lg:text-[10px]">
+              PT / Bogor / Sejak 2020
+            </span>
+          </span>
+        </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-7">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={homeHref(link.href)}
-              className="text-sm font-semibold text-gray-600 hover:text-[#EA580C] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Desktop CTA */}
-        <a
-          href={homeHref("#contact")}
-          className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#dd231a] to-[#ee2e25] text-white text-sm font-bold rounded-full hover:opacity-90 transition-opacity"
-        >
-          Dapatkan Penawaran
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
-
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMenuOpen((o) => !o)}
-          className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            {menuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
-          <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
-            {NAV_LINKS.map((link) => (
-              <a
+        <nav aria-label="Navigasi utama" className="hidden items-center gap-7 lg:flex">
+          {NAV_LINKS.map((link) => {
+            const active = link.href === "/katalog" && pathname === "/katalog"
+            return (
+              <Link
                 key={link.href}
-                href={homeHref(link.href)}
-                onClick={() => setMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-semibold text-gray-700 rounded-xl hover:bg-orange-50 hover:text-[#EA580C] transition-colors"
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`inline-flex min-h-11 items-center text-[13px] font-medium transition-colors hover:text-accent ${
+                  active ? "text-accent" : "text-ink-soft"
+                }`}
               >
                 {link.label}
-              </a>
-            ))}
-            <div className="pt-2">
-              <a
-                href={homeHref("#contact")}
-                onClick={() => setMenuOpen(false)}
-                className="block text-center py-3.5 bg-gradient-to-r from-[#dd231a] to-[#ee2e25] text-white font-bold rounded-full text-sm"
+              </Link>
+            )
+          })}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <Link href="/#kontak" className="btn btn-primary hidden sm:inline-flex">
+            Minta penawaran
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            className="btn btn-quiet h-11 w-11 p-0 lg:hidden"
+          >
+            {open ? <X size={20} /> : <List size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <div id="menu-mobile" className="border-t border-line bg-paper lg:hidden">
+          <nav aria-label="Navigasi utama, mobile" className="page py-2">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="flex min-h-11 items-center border-b border-line/70 text-sm font-medium text-ink last:border-b-0"
               >
-                Dapatkan Penawaran
-              </a>
-            </div>
-          </div>
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/#kontak"
+              onClick={() => setOpen(false)}
+              className="btn btn-primary my-3 w-full"
+            >
+              Minta penawaran
+            </Link>
+          </nav>
         </div>
       )}
     </header>
