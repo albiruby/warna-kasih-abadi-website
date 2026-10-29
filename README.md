@@ -36,7 +36,7 @@ pnpm preview
 | `public/contoh/` | Foto contoh penerapan (Unsplash, diberi label) |
 | `public/fonts/` | Font WOFF2 |
 | `public/*.pdf` | TDS T-Luc, Pedia-Luc, Dry Seal |
-| `src/screenshoots/` | Screenshot QA lengkap |
+| `src/screenshoots/` | Screenshot QA per perangkat |
 
 ## Halaman
 
@@ -58,31 +58,34 @@ Karena memakai History API, hosting perlu fallback SPA ke `index.html` agar URL 
 
 ## Screenshot
 
-Semua screenshot adalah halaman penuh pada skala CSS 1x, diambil dengan Chromium. Galeri dan daftar berkas ada di [`src/screenshoots/README.md`](src/screenshoots/README.md).
+Screenshot per layar, bukan halaman penuh. Dibagi tiga bagian: [desktop](src/screenshoots/desktop), [tablet](src/screenshoots/tablet), [mobile](src/screenshoots/mobile). Daftar lengkap ada di [`src/screenshoots/README.md`](src/screenshoots/README.md).
 
 ### Desktop 1440 x 900
 
-![Beranda desktop](src/screenshoots/wka-desktop-home.png)
-![Katalog desktop](src/screenshoots/wka-desktop-katalog.png)
-![Detail T-LUC desktop](src/screenshoots/wka-desktop-produk-tluc.png)
-![Detail Pedia-Luc desktop](src/screenshoots/wka-desktop-produk-pedialuc.png)
-![Detail DRY SEAL desktop](src/screenshoots/wka-desktop-produk-dryseal.png)
-![Halaman 404 desktop](src/screenshoots/wka-desktop-404.png)
+| Beranda | Produk | Brand |
+| --- | --- | --- |
+| [<img src="src/screenshoots/desktop/home-hero.png" width="250" alt="Beranda desktop">](src/screenshoots/desktop/home-hero.png) | [<img src="src/screenshoots/desktop/home-produk.png" width="250" alt="Daftar produk desktop">](src/screenshoots/desktop/home-produk.png) | [<img src="src/screenshoots/desktop/home-brand.png" width="250" alt="Spotlight brand desktop">](src/screenshoots/desktop/home-brand.png) |
+
+| Katalog | Detail produk | 404 |
+| --- | --- | --- |
+| [<img src="src/screenshoots/desktop/katalog.png" width="250" alt="Katalog desktop">](src/screenshoots/desktop/katalog.png) | [<img src="src/screenshoots/desktop/produk-tluc.png" width="250" alt="Detail T-LUC desktop">](src/screenshoots/desktop/produk-tluc.png) | [<img src="src/screenshoots/desktop/404.png" width="250" alt="Halaman 404 desktop">](src/screenshoots/desktop/404.png) |
 
 ### Tablet 768 x 1024
 
-![Beranda tablet](src/screenshoots/wka-tablet-home.png)
-![Katalog tablet](src/screenshoots/wka-tablet-katalog.png)
-![Detail T-LUC tablet](src/screenshoots/wka-tablet-produk-tluc.png)
-![Halaman 404 tablet](src/screenshoots/wka-tablet-404.png)
+| Beranda | Produk | Katalog |
+| --- | --- | --- |
+| [<img src="src/screenshoots/tablet/home-hero.png" width="230" alt="Beranda tablet">](src/screenshoots/tablet/home-hero.png) | [<img src="src/screenshoots/tablet/home-produk.png" width="230" alt="Daftar produk tablet">](src/screenshoots/tablet/home-produk.png) | [<img src="src/screenshoots/tablet/katalog.png" width="230" alt="Katalog tablet">](src/screenshoots/tablet/katalog.png) |
+
+| Detail produk | 404 |
+| --- | --- |
+| [<img src="src/screenshoots/tablet/produk-tluc.png" width="230" alt="Detail T-LUC tablet">](src/screenshoots/tablet/produk-tluc.png) | [<img src="src/screenshoots/tablet/404.png" width="230" alt="Halaman 404 tablet">](src/screenshoots/tablet/404.png) |
 
 ### Mobile 390 x 844
 
-![Beranda mobile](src/screenshoots/wka-mobile-home.png)
-![Katalog mobile](src/screenshoots/wka-mobile-katalog.png)
-![Filter katalog mobile](src/screenshoots/wka-mobile-katalog-filter.png)
-![Drawer warna mobile](src/screenshoots/wka-mobile-warna-drawer.png)
-![Detail T-LUC mobile](src/screenshoots/wka-mobile-produk-tluc.png)
-![Detail Pedia-Luc mobile](src/screenshoots/wka-mobile-produk-pedialuc.png)
-![Detail DRY SEAL mobile](src/screenshoots/wka-mobile-produk-dryseal.png)
-![Halaman 404 mobile](src/screenshoots/wka-mobile-404.png)
+| Beranda | Produk | Promo | Katalog |
+| --- | --- | --- | --- |
+| [<img src="src/screenshoots/mobile/home-hero.png" width="165" alt="Beranda mobile">](src/screenshoots/mobile/home-hero.png) | [<img src="src/screenshoots/mobile/home-produk.png" width="165" alt="Daftar produk mobile">](src/screenshoots/mobile/home-produk.png) | [<img src="src/screenshoots/mobile/home-promo.png" width="165" alt="Blok promo mobile">](src/screenshoots/mobile/home-promo.png) | [<img src="src/screenshoots/mobile/katalog.png" width="165" alt="Katalog mobile">](src/screenshoots/mobile/katalog.png) |
+
+| Filter | Drawer warna | Detail produk | 404 |
+| --- | --- | --- | --- |
+| [<img src="src/screenshoots/mobile/katalog-filter.png" width="165" alt="Filter katalog mobile">](src/screenshoots/mobile/katalog-filter.png) | [<img src="src/screenshoots/mobile/warna-drawer.png" width="165" alt="Drawer warna mobile">](src/screenshoots/mobile/warna-drawer.png) | [<img src="src/screenshoots/mobile/produk-tluc.png" width="165" alt="Detail T-LUC mobile">](src/screenshoots/mobile/produk-tluc.png) | [<img src="src/screenshoots/mobile/404.png" width="165" alt="Halaman 404 mobile">](src/screenshoots/mobile/404.png) |
